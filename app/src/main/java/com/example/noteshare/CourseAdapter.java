@@ -42,16 +42,24 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvCourse;
+        public TextView tvCourseType;
+        public TextView tvCourseNumber;
+        public TextView tvSectionNumber;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvCourse = itemView.findViewById(R.id.tvCourse);
+            tvCourseType = itemView.findViewById(R.id.tvCourseType);
+            tvCourseNumber = itemView.findViewById(R.id.tvCourseNumber);
+            tvSectionNumber = itemView.findViewById(R.id.tvSectionNumber);
+
         }
 
         public void bind(Course course) {
-            tvCourse.setText(course.getCourseType());
+            tvCourseType.setText(course.getCourseType());
+            tvCourseNumber.setText(course.getCourseNumber());
+            tvSectionNumber.setText(course.getSectionNumber());
+
         }
     }
 

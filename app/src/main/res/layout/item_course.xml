@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tvCourse"
+        android:id="@+id/tvCourseType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="CMPE 132" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="24sp"
+        tools:text="CMPE" />
+
+    <TextView
+        android:id="@+id/dash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/tvCourseType"
+        android:text="-"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tvCourseNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/dash"
+        android:textSize="24sp"
+        tools:text="343" />
+
+    <TextView
+        android:id="@+id/section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="2dp"
+        android:text="Section"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tvSectionNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_toEndOf="@+id/section"
+        android:textSize="24sp"
+        tools:text="99" />
+
+</RelativeLayout>
