@@ -31,16 +31,16 @@ public class PostsFragment extends Fragment {
     private RecyclerView rvPosts;
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
-    //private SwipeRefreshLayout swipeContainer;
-
-
+    SwipeRefreshLayout swipeContainer;
 
     public PostsFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_posts, container, false);
     }
 
@@ -48,76 +48,47 @@ public class PostsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvPosts = view.findViewById(R.id.rvPosts);
-        //swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         allPosts = new ArrayList<>();
-        Log.d(TAG, "onViewCreated: ");
-
-        // Steps to use the Recycler View
-        // 0. create layout for one row in the list
-        // 1. create the adapter
         adapter = new PostsAdapter(getContext(), allPosts);
-        // 2. create the data source
-        // 3. set the adapter on recycler view
         rvPosts.setAdapter(adapter);
-        // 4. set the layout manager on recycler view
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        rvPosts.setLayoutManager(layoutManager);
-        queryPosts();
+        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
-    }
-
-    private void loadMoreData(int lastPostPos) {
-        // 1. Send an API request to retrieve appropriate paginated data
-        loadNextPage(lastPostPos);
-
-    }
-
-    private void loadNextPage(int lastPostPos) {
-        int limit = lastPostPos+20;
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.include(Post.KEY_USER);
-        query.setLimit(limit);
-        query.addDescendingOrder(Post.KEY_CREATED_KEY);
-        query.findInBackground(new FindCallback<Post>() {
+        swipeContainer = view.findViewById(R.id.swipeContainer);
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void done(List<Post> posts, ParseException e) {
-                if(e!=null){
-                    Log.e(TAG, "Issue with getting posts", e);
-                    e.printStackTrace();
-                    return;
-                }
-                for(Post post: posts){
-                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
-                }
-                allPosts.clear();
-                allPosts.addAll(posts);
-                adapter.notifyDataSetChanged();
+            public void onRefresh() {
+                Log.i(TAG,"fetching new data");
+                queryPosts();
             }
         });
+        queryPosts();
     }
 
-
-    public void queryPosts() {
-        // Specify which class to query
+    protected void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
         query.setLimit(20);
-        query.addDescendingOrder(Post.KEY_CREATED_KEY);
+        query.addDescendingOrder(Post.KEY_CREATED);
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
-                if(e!=null){
-                    Log.e(TAG, "Issue with getting posts", e);
-                    e.printStackTrace();
+                if(e != null){
+                    Log.e(TAG, "Issues with getting posts", e);
                     return;
                 }
-                for(Post post: posts){
-                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
+                for (Post post: posts){
+                    Log.i(TAG, "Post: " + post.getDescription()+"username: " + post.getUser().getUsername());
                 }
+
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
             }
         });
     }
+
 }

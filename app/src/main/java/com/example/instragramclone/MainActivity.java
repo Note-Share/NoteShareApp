@@ -39,9 +39,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
-
     final FragmentManager fragmentManager = getSupportFragmentManager();
-    BottomNavigationView bottomNavigationView;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment;
-                switch (item.getItemId()) {
+                switch (menuItem.getItemId()) {
                     case R.id.action_home:
                         fragment = new PostsFragment();
                         break;
@@ -71,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        // Set default selection
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
-
-
 }
