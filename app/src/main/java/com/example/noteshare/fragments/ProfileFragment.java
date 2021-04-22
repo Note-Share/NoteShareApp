@@ -1,15 +1,8 @@
-package com.example.instragramclone.fragments;
+package com.example.noteshare.fragments;
 
-import android.content.ClipData;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.ImageView;
 
-import com.example.instragramclone.Post;
-import com.example.instragramclone.R;
-import com.example.instragramclone.fragments.PostsFragment;
+import com.example.noteshare.model.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

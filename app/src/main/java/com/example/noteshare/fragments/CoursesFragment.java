@@ -1,4 +1,4 @@
-package com.example.instragramclone.fragments;
+package com.example.noteshare.fragments;
 
 import android.os.Bundle;
 
@@ -13,13 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.instragramclone.Course;
-import com.example.instragramclone.CourseAdapter;
-import com.example.instragramclone.Post;
-import com.example.instragramclone.R;
+import com.example.noteshare.model.Course;
+import com.example.noteshare.CourseAdapter;
+import com.example.noteshare.R;
+import com.example.noteshare.model.Post;
+import com.example.noteshare.model.UserCourse;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,11 +54,6 @@ public class CoursesFragment extends Fragment {
         rvCourses = view.findViewById(R.id.rvCourses);
         allCourses = new ArrayList<>();
 
-//        allCourses.add(new Course("CMPE-137"));
-//        allCourses.add(new Course("CMPE-195B"));
-//        allCourses.add(new Course("ENGR-195B"));
-//        allCourses.add(new Course("CMPE-188"));
-
         adapter = new CourseAdapter(getContext(), allCourses);
         rvCourses.setAdapter(adapter);
         rvCourses.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -66,13 +63,23 @@ public class CoursesFragment extends Fragment {
     }
 
     protected void queryCourses() {
-        ParseQuery<Course> query = ParseQuery.getQuery(Course.class);
-        query.findInBackground(new FindCallback<Course>() {
+        ParseQuery<UserCourse> query = ParseQuery.getQuery(UserCourse.class);
+        // Extra Query Options
+        query.include(UserCourse.KEY_COURSE);
+        query.whereEqualTo(UserCourse.KEY_USER, ParseUser.getCurrentUser());
+
+
+        query.findInBackground(new FindCallback<UserCourse>() {
             @Override
-            public void done(List<Course> courses, ParseException e) {
+            public void done(List<UserCourse> userCourses, ParseException e) {
                 if(e != null){
                     Log.e(TAG, "Issues with getting posts", e);
                     return;
+                }
+                ArrayList<Course> courses = new ArrayList<>();
+
+                for(UserCourse userCourse: userCourses){
+                    courses.add((Course)userCourse.getCourse());
                 }
 
                 allCourses.addAll(courses);

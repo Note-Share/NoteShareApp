@@ -1,4 +1,4 @@
-package com.example.instragramclone.fragments;
+package com.example.noteshare.fragments;
 
 import android.os.Bundle;
 
@@ -14,9 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.instragramclone.Post;
-import com.example.instragramclone.PostsAdapter;
-import com.example.instragramclone.R;
+import com.example.noteshare.model.Post;
+import com.example.noteshare.PostsAdapter;
+import com.example.noteshare.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

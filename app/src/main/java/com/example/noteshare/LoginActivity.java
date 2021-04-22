@@ -1,4 +1,4 @@
-package com.example.instragramclone;
+package com.example.noteshare;
 
 import androidx.appcompat.app.AppCompatActivity;
 

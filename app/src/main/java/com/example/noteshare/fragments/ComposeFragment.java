@@ -1,4 +1,4 @@
-package com.example.instragramclone.fragments;
+package com.example.noteshare.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,19 +21,15 @@ import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
-import com.example.instragramclone.LoginActivity;
-import com.example.instragramclone.MainActivity;
-import com.example.instragramclone.Post;
-import com.example.instragramclone.R;
-import com.parse.FindCallback;
+import com.example.noteshare.LoginActivity;
+import com.example.noteshare.model.Post;
+import com.example.noteshare.R;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
-import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
