@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.instragramclone.fragments.ComposeFragment;
+import com.example.instragramclone.fragments.CoursesFragment;
 import com.example.instragramclone.fragments.PostsFragment;
 import com.example.instragramclone.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-                        fragment = new PostsFragment();
+                        fragment = new CoursesFragment();
                         break;
                     case R.id.action_compose:
                         fragment = new ComposeFragment();
