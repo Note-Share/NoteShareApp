@@ -4,22 +4,31 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.noteshare.fragments.PostsFragment;
+import com.example.noteshare.fragments.SearchFragment;
 import com.example.noteshare.model.Course;
 
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder>{
+
     public Context context;
     public List<Course> courses;
+    private FragmentManager fragmentManager;
 
-    public CourseAdapter(Context context, List<Course> courses){
+    public CourseAdapter(Context context, List<Course> courses, FragmentManager fragmentManager){
         this.context = context;
         this.courses = courses;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -42,12 +51,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        public RelativeLayout containerCourse;
+
         public TextView tvCourseType;
         public TextView tvCourseNumber;
         public TextView tvSectionNumber;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            containerCourse = itemView.findViewById(R.id.containerCourse);
 
             tvCourseType = itemView.findViewById(R.id.tvCourseType);
             tvCourseNumber = itemView.findViewById(R.id.tvCourseNumber);
@@ -59,6 +72,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             tvCourseType.setText(course.getCourseType());
             tvCourseNumber.setText(course.getCourseNumber());
             tvSectionNumber.setText(course.getSectionNumber());
+
+            containerCourse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment fragment = new PostsFragment();
+                    fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+//                    Toast.makeText(context, "Clicked: " + course.getCourseType() + " - " + course.getCourseNumber(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
 
         }
     }

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.example.noteshare.fragments.ComposeFragment;
 import com.example.noteshare.fragments.CoursesFragment;
 import com.example.noteshare.fragments.ProfileFragment;
+import com.example.noteshare.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-                        fragment = new CoursesFragment();
+                        fragment = new CoursesFragment(fragmentManager);
                         break;
                     case R.id.action_compose:
                         fragment = new ComposeFragment();
