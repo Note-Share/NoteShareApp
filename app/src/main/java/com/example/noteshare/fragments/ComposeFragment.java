@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,14 +24,21 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.example.noteshare.LoginActivity;
+import com.example.noteshare.SpinAdapter;
+import com.example.noteshare.model.Course;
 import com.example.noteshare.model.Post;
 import com.example.noteshare.R;
+import com.example.noteshare.model.UserCourse;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -45,6 +54,10 @@ public class ComposeFragment extends Fragment {
     private Button btnLogout;
     private File photoFile;
     public String photoFileName = "photo.jpg";
+
+    private Spinner spinnerCourses;
+    private SpinAdapter spinAdapter;
+    private List<Course> allCourses;
 
     public ComposeFragment() {
         // Required empty public constructor
@@ -67,6 +80,7 @@ public class ComposeFragment extends Fragment {
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
         btnLogout = view.findViewById(R.id.btnLogout);
+        spinnerCourses = view.findViewById(R.id.spinnerCourses);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +88,28 @@ public class ComposeFragment extends Fragment {
                 launchCamera();
             }
         });
+
+        // Spinner
+        allCourses = new ArrayList<>();
+        queryCourses();
+
+        spinAdapter = new SpinAdapter(getContext(), android.R.layout.simple_spinner_item, allCourses);
+        spinnerCourses.setAdapter(spinAdapter);
+
+        spinnerCourses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Course course = spinAdapter.getItem(position);
+                Toast.makeText(getContext(), "Selected: " + course.getFullCourseName(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,6 +204,32 @@ public class ComposeFragment extends Fragment {
                 Toast.makeText(getContext(),"Posted!!",Toast.LENGTH_SHORT).show();
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
+            }
+        });
+    }
+
+    protected void queryCourses() {
+        ParseQuery<UserCourse> query = ParseQuery.getQuery(UserCourse.class);
+        // Extra Query Options
+        query.include(UserCourse.KEY_COURSE);
+        query.whereEqualTo(UserCourse.KEY_USER, ParseUser.getCurrentUser());
+
+
+        query.findInBackground(new FindCallback<UserCourse>() {
+            @Override
+            public void done(List<UserCourse> userCourses, ParseException e) {
+                if(e != null){
+                    Log.e(TAG, "Issues with getting posts", e);
+                    return;
+                }
+                ArrayList<Course> courses = new ArrayList<>();
+
+                for(UserCourse userCourse: userCourses){
+                    courses.add((Course)userCourse.getCourse());
+                }
+
+                allCourses.addAll(courses);
+                spinAdapter.notifyDataSetChanged();
             }
         });
     }

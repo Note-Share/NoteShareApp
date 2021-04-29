@@ -28,7 +28,15 @@ tools:context=".fragments.ComposeFragment">
     android:hint="Description..."
     android:ems="10"/>
 
-<LinearLayout
+    <Spinner
+        android:id="@+id/spinnerCourses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:prompt="@string/courses_prompt"
+        />
+
+    <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -54,14 +62,15 @@ tools:context=".fragments.ComposeFragment">
         android:layout_gravity="center"/>
 </LinearLayout>
 
-<Button
-    android:id="@+id/btnLogout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginTop="10dp"
-    android:backgroundTint="#F2F3F4"
-    android:text="Log out"
-    android:textColor="#212F3D" />
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="56dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#F2F3F4"
+        android:text="Log out"
+        android:textColor="#212F3D"
+        android:textSize="4sp" />
 
 </LinearLayout>

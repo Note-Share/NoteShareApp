@@ -12,13 +12,18 @@ import com.example.noteshare.fragments.ComposeFragment;
 import com.example.noteshare.fragments.CoursesFragment;
 import com.example.noteshare.fragments.ProfileFragment;
 import com.example.noteshare.fragments.SearchFragment;
+import com.example.noteshare.model.Course;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
+
+    private List<Course> coursesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

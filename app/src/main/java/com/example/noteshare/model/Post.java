@@ -11,6 +11,7 @@ public class Post extends ParseObject {
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
+    public static final String KEY_COURSE = "course";
     public static final String KEY_CREATED = "createdAt";
 
     public String getDescription() {
@@ -37,6 +38,13 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
     }
 
+    public ParseObject getCourse() {
+        return getParseObject(KEY_COURSE);
+    }
+
+    public void setCourse(ParseObject course) {
+        put(KEY_COURSE, course);
+    }
 
 
 }
