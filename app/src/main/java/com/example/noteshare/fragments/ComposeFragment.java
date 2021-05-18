@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.noteshare.LoginActivity;
 import com.example.noteshare.SpinAdapter;
+import com.example.noteshare.WelcomeActivity;
 import com.example.noteshare.model.Course;
 import com.example.noteshare.model.Post;
 import com.example.noteshare.R;
@@ -117,7 +118,7 @@ public class ComposeFragment extends Fragment {
             public void onClick(View view) {
                 ParseUser.logOut();
                 ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-                Intent i = new Intent(getContext(), LoginActivity.class);
+                Intent i = new Intent(getContext(), WelcomeActivity.class);
                 startActivity(i);
             }
         });
