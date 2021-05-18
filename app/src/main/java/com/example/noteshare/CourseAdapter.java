@@ -76,9 +76,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             containerCourse.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Fragment fragment = new PostsFragment();
+                    //Passed in selected course to PostsFragment
+                    //PostsFragment renders posts for only selected courses
+                    Fragment fragment = new PostsFragment(course);
                     fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
-//                    Toast.makeText(context, "Clicked: " + course.getCourseType() + " - " + course.getCourseNumber(), Toast.LENGTH_SHORT).show();
                 }
             });
 

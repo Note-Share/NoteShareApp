@@ -58,6 +58,7 @@ public class ComposeFragment extends Fragment {
     private Spinner spinnerCourses;
     private SpinAdapter spinAdapter;
     private List<Course> allCourses;
+    private Course selectedCourse;
 
     public ComposeFragment() {
         // Required empty public constructor
@@ -99,8 +100,8 @@ public class ComposeFragment extends Fragment {
         spinnerCourses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Course course = spinAdapter.getItem(position);
-                Toast.makeText(getContext(), "Selected: " + course.getFullCourseName(), Toast.LENGTH_SHORT).show();
+                selectedCourse = spinAdapter.getItem(position);
+                Toast.makeText(getContext(), "Selected: " + selectedCourse.getFullCourseName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -134,7 +135,8 @@ public class ComposeFragment extends Fragment {
                     Toast.makeText(getContext(), "There is no image!", Toast.LENGTH_SHORT).show();
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description, currentUser, photoFile);
+                //Added selectedCourse to Post parameter
+                savePost(description, currentUser, photoFile, selectedCourse);
             }
         });
     }
@@ -188,11 +190,12 @@ public class ComposeFragment extends Fragment {
         return new File(mediaStorageDir.getPath() + File.separator + fileName);
     }
 
-    private void savePost(String description, ParseUser currentUser, File photoFile){
+    private void savePost(String description, ParseUser currentUser, File photoFile, Course selectedCourse){
         Post post = new Post();
         post.setDescription(description);
         post.setImage(new ParseFile(photoFile));
         post.setUser(currentUser);
+        post.setCourse(selectedCourse);
         post.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {

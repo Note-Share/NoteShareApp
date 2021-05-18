@@ -13,13 +13,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.noteshare.model.Course;
 import com.example.noteshare.model.Post;
 import com.example.noteshare.PostsAdapter;
 import com.example.noteshare.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +34,18 @@ public class PostsFragment extends Fragment {
     private RecyclerView rvPosts;
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
+    private Course course;
     SwipeRefreshLayout swipeContainer;
 
+    //Created separate constructor
+    //Retrieved selected course from course adapter
+    //Set selected course to private variable
+    public PostsFragment(Course course) {
+        this.course = course;
+    }
+
     public PostsFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -72,6 +83,8 @@ public class PostsFragment extends Fragment {
     protected void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
+        //Search for posts that only belong to selected class
+        query.whereEqualTo(Post.KEY_COURSE, course);
         query.setLimit(20);
         query.addDescendingOrder(Post.KEY_CREATED);
         query.findInBackground(new FindCallback<Post>() {
