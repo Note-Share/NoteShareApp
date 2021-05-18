@@ -10,13 +10,15 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="100dp"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/nav_logo_whiteout" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="100dp"
+        android:text="Login"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/etUsername"
@@ -44,13 +46,6 @@
         android:text="LOG in"
         android:backgroundTint="#0084FF"
         android:layout_weight="1"/>
-    <Button
-        android:layout_marginTop="10dp"
-        android:id="@+id/btnSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Sign up"
-        android:backgroundTint="#34A853"
-        android:layout_weight="1"/>
+
 
 </LinearLayout>
