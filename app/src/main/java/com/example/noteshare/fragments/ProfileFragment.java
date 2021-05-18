@@ -1,7 +1,9 @@
 package com.example.noteshare.fragments;
 
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.noteshare.model.Course;
 import com.example.noteshare.model.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -24,6 +26,13 @@ public class ProfileFragment extends PostsFragment {
         }
     }
 */
+
+    //Added empty constructor
+    public ProfileFragment() {
+        // Required empty public constructor
+       super();
+
+    }
 
     @Override
     protected void queryPosts() {
