@@ -14,9 +14,15 @@ public class UserCourse extends ParseObject {
         return getParseUser(KEY_USER);
     }
 
+    public void setUser(ParseUser user) {
+        put(KEY_USER, user);
+    }
+
     public ParseObject getCourse() {
         return getParseObject(KEY_COURSE);
     }
 
-
+    public void setCourse(ParseObject course) {
+        put(KEY_COURSE, course);
+    }
 }

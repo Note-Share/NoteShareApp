@@ -102,7 +102,6 @@ public class ComposeFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCourse = spinAdapter.getItem(position);
-                Toast.makeText(getContext(), "Selected: " + selectedCourse.getFullCourseName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

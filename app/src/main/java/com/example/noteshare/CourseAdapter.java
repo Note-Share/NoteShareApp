@@ -17,6 +17,8 @@ import com.example.noteshare.fragments.PostsFragment;
 import com.example.noteshare.fragments.SearchFragment;
 import com.example.noteshare.model.Course;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder>{
@@ -56,6 +58,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         public TextView tvCourseType;
         public TextView tvCourseNumber;
         public TextView tvSectionNumber;
+        public TextView tvSemester;
+        public TextView tvYear;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,13 +69,17 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             tvCourseType = itemView.findViewById(R.id.tvCourseType);
             tvCourseNumber = itemView.findViewById(R.id.tvCourseNumber);
             tvSectionNumber = itemView.findViewById(R.id.tvSectionNumber);
+            tvSemester = itemView.findViewById(R.id.tvSemester);
+            tvYear = itemView.findViewById(R.id.tvYear);
 
         }
 
         public void bind(Course course) {
             tvCourseType.setText(course.getCourseType());
             tvCourseNumber.setText(course.getCourseNumber());
-            tvSectionNumber.setText(course.getSectionNumber());
+            tvSectionNumber.setText(Integer.toString(course.getSectionNumber()));
+            tvSemester.setText(course.getSemester());
+            tvYear.setText(Integer.toString(course.getYear()));
 
             containerCourse.setOnClickListener(new View.OnClickListener() {
                 @Override
