@@ -18,8 +18,8 @@
 
     <item
         android:id="@+id/action_profile"
-        android:icon="@drawable/instagram_user_outline_24"
-        android:title="Profile"
+        android:icon="@drawable/noteshare_camera"
+        android:title="My Photos"
         app:showAsAction="always" />
 
 
