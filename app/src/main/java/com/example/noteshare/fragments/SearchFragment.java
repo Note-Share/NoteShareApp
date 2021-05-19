@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,20 +77,6 @@ public class SearchFragment extends Fragment {
         spinnerSemester = view.findViewById(R.id.spinnerSemester);
         spinnerYear = view.findViewById(R.id.spinnerYear);
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(TAG, "Button Clicked:");
-                String classType = etClassType.getText().toString();
-                String classNum = etClassNum.getText().toString();
-                int sectionNum = Integer.parseInt(etSectionNum.getText().toString());
-
-
-                Log.i(TAG, "Input from the fields: " + classType + "  " + classNum + "  " + sectionNum);
-                getCourse(classType, classNum, sectionNum);
-            }
-        });
-
         ArrayList<String> semesterOptions = new ArrayList<>();
         semesterOptions.add("Select Semester...");
         semesterOptions.add("Fall");
@@ -126,6 +113,32 @@ public class SearchFragment extends Fragment {
 
             }
         });
+
+
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Button Clicked:");
+                String classType = etClassType.getText().toString();
+                String classNum = etClassNum.getText().toString();
+
+                //Input Validation
+                if(TextUtils.isEmpty(classType) || TextUtils.isEmpty(classNum) || TextUtils.isEmpty(etSectionNum.getText().toString())){
+                    Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(selectedSemester.equals("Select Semester..." )){
+                    Toast.makeText(getContext(), "Please select a semester", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                int sectionNum = Integer.parseInt(etSectionNum.getText().toString());
+                Log.i(TAG, "Input from the fields: " + classType + "  " + classNum + "  " + sectionNum);
+                getCourse(classType, classNum, sectionNum);
+            }
+        });
+
 
 
     }
