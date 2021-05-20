@@ -11,12 +11,12 @@
     tools:context=".WelcomeActivity">
 
     <ImageView
+        android:layout_width="296dp"
+        android:layout_height="149dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/nav_logo_whiteout" />
+        app:srcCompat="@drawable/noteshare_logo" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

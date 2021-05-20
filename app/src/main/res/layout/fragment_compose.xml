@@ -8,13 +8,16 @@ android:orientation="vertical"
 android:layout_height="match_parent"
 tools:context=".fragments.ComposeFragment">
 
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    app:srcCompat="@drawable/nav_logo_whiteout" />
+    <TextView
+        android:id="@+id/tvPostNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:text="Post Notes"
+        android:textAlignment="center"
+        android:textSize="30sp" />
 
-<ImageView
+    <ImageView
     android:id="@+id/ivPostImage"
     android:layout_width="match_parent"
     android:layout_height="300dp"
@@ -32,9 +35,9 @@ tools:context=".fragments.ComposeFragment">
         android:id="@+id/spinnerCourses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
         android:prompt="@string/courses_prompt"
-        />
+        android:spinnerMode="dropdown"
+        android:visibility="visible" />
 
     <LinearLayout
     android:layout_width="wrap_content"
