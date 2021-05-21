@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.noteshare.fragments.ComposeFragment;
 import com.example.noteshare.fragments.CoursesFragment;
@@ -14,6 +18,7 @@ import com.example.noteshare.fragments.ProfileFragment;
 import com.example.noteshare.fragments.SearchFragment;
 import com.example.noteshare.model.Course;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -55,5 +60,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         bottomNavigationView.setSelectedItemId(R.id.action_home);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.logoutOption: {
+                logout();
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void logout(){
+        ParseUser.logOut();
+        ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+        Intent i = new Intent(this, WelcomeActivity.class);
+        startActivity(i);
     }
 }

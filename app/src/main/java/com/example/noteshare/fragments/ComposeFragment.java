@@ -81,7 +81,6 @@ public class ComposeFragment extends Fragment {
         btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
-        btnLogout = view.findViewById(R.id.btnLogout);
         spinnerCourses = view.findViewById(R.id.spinnerCourses);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
@@ -110,17 +109,6 @@ public class ComposeFragment extends Fragment {
             }
         });
 
-
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ParseUser.logOut();
-                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-                Intent i = new Intent(getContext(), WelcomeActivity.class);
-                startActivity(i);
-            }
-        });
 
         //   queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {

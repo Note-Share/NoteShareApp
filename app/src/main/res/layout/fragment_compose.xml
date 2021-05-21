@@ -65,15 +65,4 @@ tools:context=".fragments.ComposeFragment">
         android:layout_gravity="center"/>
 </LinearLayout>
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="56dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#F2F3F4"
-        android:text="Log out"
-        android:textColor="#212F3D"
-        android:textSize="4sp" />
-
 </LinearLayout>
