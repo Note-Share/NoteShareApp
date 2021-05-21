@@ -1,68 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:orientation="vertical"
-android:layout_height="match_parent"
-tools:context=".fragments.ComposeFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.ComposeFragment">
 
     <TextView
         android:id="@+id/tvPostNotes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="40dp"
-        android:text="Post Notes"
+        android:layout_height="39dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="-1dp"
+        android:text="Add a Note"
         android:textAlignment="center"
         android:textSize="30sp" />
 
     <ImageView
-    android:id="@+id/ivPostImage"
-    android:layout_width="match_parent"
-    android:layout_height="300dp"
-    tools:srcCompat="@tools:sample/avatars"
-    android:layout_marginBottom="20dp"/>
-<EditText
-    android:id="@+id/etDesc"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    android:hint="Description..."
-    android:ems="10"/>
+        android:id="@+id/ivPostImage"
+        android:layout_width="match_parent"
+        android:layout_height="371dp"
+        android:layout_above="@+id/etDesc"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="17dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <EditText
+        android:id="@+id/etDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="241dp"
+        android:ems="10"
+        android:hint="Description..." />
 
     <Spinner
         android:id="@+id/spinnerCourses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="203dp"
         android:prompt="@string/courses_prompt"
         android:spinnerMode="dropdown"
         android:visibility="visible" />
 
-    <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="center">
-
     <Button
         android:id="@+id/btnCaptureImage"
-        android:layout_width="match_parent"
+        android:layout_width="269dp"
         android:layout_height="wrap_content"
-        android:text="Take Picture"
-        android:textColor="#212F3D"
-        android:backgroundTint="#F2F3F4"
+        android:layout_above="@+id/btnSubmit"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="65dp"
         android:layout_marginRight="50dp"
-        />
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#F2F3F4"
+        android:text="Take Picture"
+        android:textColor="#212F3D" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post"
-        android:textColor="#212F3D"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="63dp"
         android:backgroundTint="#F2F3F4"
-        android:layout_gravity="center"/>
-</LinearLayout>
+        android:text="Post"
+        android:textColor="#212F3D" />
 
-</LinearLayout>
+</RelativeLayout>

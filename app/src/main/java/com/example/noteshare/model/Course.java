@@ -71,6 +71,12 @@ public class Course extends ParseObject{
 
     }
 
+    public String getCourseTitle() {
+
+        return getCourseType() + " - " + getCourseNumber() + "  Notes" ;
+
+    }
+
 
 
 

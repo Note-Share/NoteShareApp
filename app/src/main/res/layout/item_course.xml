@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerCourse"
-    android:layout_width="match_parent"
+    android:layout_width="600dp"
     android:layout_height="wrap_content"
     android:paddingLeft="5dp"
     android:paddingTop="10dp"
@@ -59,8 +59,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvCourseType"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="8dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/tvSemester"
         tools:text="2021" />
 
@@ -71,8 +72,18 @@
         android:layout_below="@+id/tvCourseType"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
         tools:text="Fall" />
+
+    <View
+        android:id="@+id/sepCourse"
+        android:layout_width="420dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tvYear"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-17dp"
+        android:layout_marginTop="17dp"
+        android:background="@android:color/darker_gray" />
 
 </RelativeLayout>
