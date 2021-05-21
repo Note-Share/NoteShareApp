@@ -14,6 +14,7 @@ public class Post extends ParseObject {
     public static final String KEY_COURSE = "course";
     public static final String KEY_CREATED = "createdAt";
 
+
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
     }
@@ -44,6 +45,10 @@ public class Post extends ParseObject {
 
     public void setCourse(ParseObject course) {
         put(KEY_COURSE, course);
+    }
+
+    public String getCreated(){
+        return String.valueOf(getCreatedAt());
     }
 
 
