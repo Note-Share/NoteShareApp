@@ -18,9 +18,14 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="100dp"
         android:text="Sign Up"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 
+    <Spinner
+        android:id="@+id/schoolSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/etUsername"
